@@ -32,8 +32,10 @@ if (process.env.NODE_ENV === 'development') {
   });
 }
 
-// Database Start
+// Documentación Swagger (cargar antes de la base de datos)
+app.use('/', require('./routes/swagger'));
 
+// Database Start
 mongodb.initDb((err) => {
   if (err) {
     console.error('❌ Error connecting to database:', err);
@@ -41,16 +43,13 @@ mongodb.initDb((err) => {
   } else {
     console.log('✅ Database connected successfully');
     
-    // Documentación Swagger
-    app.use('/api-docs', require('./routes/swagger'));
-    
-    // principal routes
+    // Principal routes
     app.use('/', require('./routes'));
     
     // Middleware errors
     app.use(errorHandler);
     
-    // Start Server.
+    // Start Server
     app.listen(port, () => {
       console.log(`Server running on http://localhost:${port}`);
       console.log(`API Docs: http://localhost:${port}/api-docs`);
