@@ -9,6 +9,3 @@ Thumbs.db
 
 # VS Code
 .vscode/
-
-# Swagger output 
-swagger-output.json
