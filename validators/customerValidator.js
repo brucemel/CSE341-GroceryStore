@@ -1,20 +1,19 @@
 const { body, param } = require('express-validator');
 
-// ========================================
-// VALIDACIÓN PARA CREAR CLIENTE (POST)
-// ========================================
+// CREATE CUSTOMER VALIDATOR (POST)
+
 const validateCustomerCreate = [
   body('firstName')
     .trim()
     .notEmpty().withMessage('First name is required')
     .isLength({ min: 2, max: 50 }).withMessage('First name must be between 2 and 50 characters')
-    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/).withMessage('First name can only contain letters'),
+    .matches(/^[a-zA-Z\s]+$/).withMessage('First name can only contain letters'),
   
   body('lastName')
     .trim()
     .notEmpty().withMessage('Last name is required')
     .isLength({ min: 2, max: 50 }).withMessage('Last name must be between 2 and 50 characters')
-    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/).withMessage('Last name can only contain letters'),
+    .matches(/^[a-zA-Z\s]+$/).withMessage('Last name can only contain letters'),
   
   body('email')
     .trim()
@@ -44,21 +43,20 @@ const validateCustomerCreate = [
     .matches(/^\d{5}$/).withMessage('Postal code must be 5 digits')
 ];
 
-// ========================================
-// VALIDACIÓN PARA ACTUALIZAR CLIENTE (PUT)
-// ========================================
+// UPDATE CUSTOMER VALIDATOR (PUT)
+
 const validateCustomerUpdate = [
   body('firstName')
     .optional()
     .trim()
     .isLength({ min: 2, max: 50 }).withMessage('First name must be between 2 and 50 characters')
-    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/).withMessage('First name can only contain letters'),
+    .matches(/^[a-zA-Z\s]+$/).withMessage('First name can only contain letters'),
   
   body('lastName')
     .optional()
     .trim()
     .isLength({ min: 2, max: 50 }).withMessage('Last name must be between 2 and 50 characters')
-    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/).withMessage('Last name can only contain letters'),
+    .matches(/^[a-zA-Z\s]+$/).withMessage('Last name can only contain letters'),
   
   body('email')
     .optional()
@@ -88,9 +86,8 @@ const validateCustomerUpdate = [
     .matches(/^\d{5}$/).withMessage('Postal code must be 5 digits')
 ];
 
-// ========================================
-// VALIDACIÓN DE PARÁMETRO ID
-// ========================================
+// CUSTOMER ID VALIDATOR
+
 const validateCustomerId = [
   param('id')
     .isLength({ min: 24, max: 24 }).withMessage('Invalid customer ID format')

@@ -1,32 +1,86 @@
-### Get all contacts (Local)
-GET http://localhost:3000/contacts
 
-### Get single contact (Local) 
-GET http://localhost:3000/contacts/69125da4e0f0401a81471397
+//PRODUCTS TEST
 
-### create contact
-POST http://localhost:3000/contacts HTTP/1.1
+### Get all products (Local)
+GET http://localhost:3000/products
+
+### Get single products (Local) 
+GET http://localhost:3000/products/69215430ce5fe1cc6c4c669a
+
+### create products
+POST http://localhost:3000/products HTTP/1.1
 content-type: application/json
 
 {
-  "firstName": "John Jordan Gabriel",
-  "lastName": "Doe",
-  "email": "johnJordan.doe@email.com",
-  "favoriteColor": "BlueSky",
-  "birthday": "1998-05-15"
+  "name": "Laundry",
+  "category": "Cleaning",
+  "price": 12.9,
+  "stock": 40,
+  "unit": "kg",
+  "supplier": "Clean Home Products",
+  "description": "Powder laundry detergent 1kg",
+  "expirationDate": "2026-01-31",
+  "updatedAt": "2025-11-22T12:03:06.049Z"
 }
 
-### PUT contact
-PUT http://localhost:3000/contacts/69125da4e0f0401a81471397 HTTP/1.1
+### PUT products
+PUT http://localhost:3000/products/69215430ce5fe1cc6c4c669a HTTP/1.1
 content-type: application/json
 
 {
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "john.doe@email.com",
-  "favoriteColor": "Blue",
-  "birthday": "1990-05-15"
+  "name": "Laundry goal",
+  "category": "Cleaning",
+  "price": 12.9,
+  "stock": 40,
+  "unit": "kg",
+  "supplier": "Clean Home Products",
+  "description": "Powder laundry detergent 1kg",
+  "expirationDate": "2026-01-31"
 }
 
 ###delete
-DELETE http://localhost:3000/contacts/69125da4e0f0401a81471397 HTTP/1.1
+DELETE http://localhost:3000/products/6921a895c0fba67833e43870 HTTP/1.1
+
+
+//CUSTOMERS TEST
+
+### Get all customers (Local)
+GET http://localhost:3000/customers
+
+### Get single customers (Local) 
+GET http://localhost:3000/customers/6920dd43ce5fe1cc6c4c6687
+
+### create customers
+POST http://localhost:3000/customers HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "Juan",
+  "lastName": "Pérez García",
+  "email": "juan.perez@email.com",
+  "phone": "+51 987654321",
+  "address": "Av. América 123, Urbanización El Golf",
+  "city": "Trujillo",
+  "postalCode": "13001",
+  "createdAt": "2024-11-21T12:00:00.000Z",
+  "updatedAt": "2024-11-21T12:00:00.000Z"
+}
+
+### PUT customers
+PUT http://localhost:3000/customers/6920dd43ce5fe1cc6c4c6687 HTTP/1.1
+content-type: application/json
+
+{
+  "firstName": "Juan",
+  "lastName": "Pérez García",
+  "email": "juan.perez@email.com",
+  "phone": "+51 987654321",
+  "address": "Av. América 123, Urbanización El Golf",
+  "city": "Trujillo",
+  "postalCode": "13001",
+  "createdAt": "2024-11-21T12:00:00.000Z",
+  "updatedAt": "2024-11-21T12:00:00.000Z"
+}
+
+###delete
+DELETE http://localhost:3000/customers/69125da4e0f0401a81471397 HTTP/1.1

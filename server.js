@@ -1,4 +1,3 @@
-// ⚠️ IMPORTANTE: Primera línea siempre
 require('dotenv').config();
 
 const express = require('express');
@@ -9,9 +8,8 @@ const errorHandler = require('./middleware/errorHandler');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// ========================================
+
 // MIDDLEWARE
-// ========================================
 
 // Body parser
 app.use(express.json());
@@ -34,9 +32,7 @@ if (process.env.NODE_ENV === 'development') {
   });
 }
 
-// ========================================
-// INICIALIZAR BASE DE DATOS Y SERVIDOR
-// ========================================
+// Database Start
 
 mongodb.initDb((err) => {
   if (err) {
@@ -48,17 +44,16 @@ mongodb.initDb((err) => {
     // Documentación Swagger
     app.use('/api-docs', require('./routes/swagger'));
     
-    // Rutas principales
+    // principal routes
     app.use('/', require('./routes'));
     
-    // Middleware de errores (DEBE IR AL FINAL)
+    // Middleware errors
     app.use(errorHandler);
     
-    // Iniciar servidor
+    // Start Server.
     app.listen(port, () => {
-      console.log(`🚀 Server running on http://localhost:${port}`);
-      console.log(`📚 API Docs: http://localhost:${port}/api-docs`);
-      console.log(`📦 Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`Server running on http://localhost:${port}`);
+      console.log(`API Docs: http://localhost:${port}/api-docs`);
     });
   }
 });

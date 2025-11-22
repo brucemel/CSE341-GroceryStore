@@ -9,9 +9,7 @@
     "swagger": "node swagger.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["api", "rest", "mongodb", "grocery", "crud"],
-  "author": "Bruce Melendez",
-  "license": "ISC",
+  
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

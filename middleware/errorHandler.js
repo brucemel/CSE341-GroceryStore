@@ -31,7 +31,7 @@ const errorHandler = (err, req, res, next) => {
     });
   }
 
-  // Error
+  // Error (500 server error)
   const statusCode = err.statusCode || 500;
   res.status(statusCode).json({
     success: false,

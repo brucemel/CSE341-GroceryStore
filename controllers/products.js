@@ -5,9 +5,8 @@ const { validationResult } = require('express-validator');
 const DB_NAME = 'groceryStore';
 const COLLECTION_NAME = 'products';
 
-// ========================================
 // GET ALL PRODUCTS
-// ========================================
+
 const getAllProducts = async (req, res, next) => {
   try {
     const result = await mongodb
@@ -27,12 +26,11 @@ const getAllProducts = async (req, res, next) => {
   }
 };
 
-// ========================================
 // GET SINGLE PRODUCT
-// ========================================
+
 const getProductById = async (req, res, next) => {
   try {
-    // Validar ID
+    // Validator ID
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json({
         success: false,
@@ -63,12 +61,11 @@ const getProductById = async (req, res, next) => {
   }
 };
 
-// ========================================
 // CREATE PRODUCT
-// ========================================
+
 const createProduct = async (req, res, next) => {
   try {
-    // Validar datos
+    // Validator data
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -117,12 +114,11 @@ const createProduct = async (req, res, next) => {
   }
 };
 
-// ========================================
 // UPDATE PRODUCT
-// ========================================
+
 const updateProduct = async (req, res, next) => {
   try {
-    // Validar ID
+    // Validator ID
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json({
         success: false,
@@ -130,7 +126,7 @@ const updateProduct = async (req, res, next) => {
       });
     }
 
-    // Validar datos
+    // data validator
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -142,7 +138,7 @@ const updateProduct = async (req, res, next) => {
 
     const productId = new ObjectId(req.params.id);
     
-    // Construir objeto de actualización solo con campos presentes
+    //build an refresh object only with present camps
     const updateData = {
       updatedAt: new Date()
     };
@@ -182,9 +178,8 @@ const updateProduct = async (req, res, next) => {
   }
 };
 
-// ========================================
 // DELETE PRODUCT
-// ========================================
+
 const deleteProduct = async (req, res, next) => {
   try {
     // Validar ID

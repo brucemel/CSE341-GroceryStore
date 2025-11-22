@@ -5,9 +5,8 @@ const { validationResult } = require('express-validator');
 const DB_NAME = 'groceryStore';
 const COLLECTION_NAME = 'customers';
 
-// ========================================
 // GET ALL CUSTOMERS
-// ========================================
+
 const getAllCustomers = async (req, res, next) => {
   try {
     const result = await mongodb
@@ -27,9 +26,8 @@ const getAllCustomers = async (req, res, next) => {
   }
 };
 
-// ========================================
 // GET SINGLE CUSTOMER
-// ========================================
+
 const getCustomerById = async (req, res, next) => {
   try {
     if (!ObjectId.isValid(req.params.id)) {
@@ -62,9 +60,8 @@ const getCustomerById = async (req, res, next) => {
   }
 };
 
-// ========================================
 // CREATE CUSTOMER
-// ========================================
+
 const createCustomer = async (req, res, next) => {
   try {
     const errors = validationResult(req);
@@ -114,9 +111,8 @@ const createCustomer = async (req, res, next) => {
   }
 };
 
-// ========================================
 // UPDATE CUSTOMER
-// ========================================
+
 const updateCustomer = async (req, res, next) => {
   try {
     if (!ObjectId.isValid(req.params.id)) {
@@ -175,9 +171,8 @@ const updateCustomer = async (req, res, next) => {
   }
 };
 
-// ========================================
 // DELETE CUSTOMER
-// ========================================
+
 const deleteCustomer = async (req, res, next) => {
   try {
     if (!ObjectId.isValid(req.params.id)) {

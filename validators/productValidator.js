@@ -1,6 +1,50 @@
 const { body, param } = require('express-validator');
 
-//create a product validator
+// ALLOWED CATEGORIES
+
+const ALLOWED_CATEGORIES = [
+  'Fruits',
+  'Vegetables',
+  'Dairy',
+  'Meat',
+  'Poultry',
+  'Seafood',
+  'Bakery',
+  'Beverages',
+  'Snacks',
+  'Frozen',
+  'Canned',
+  'Grains',
+  'Pasta',
+  'Condiments',
+  'Spices',
+  'Cleaning',
+  'Household',
+  'Personal Care',
+  'Baby',
+  'Pet Food'
+];
+
+// ALLOWED UNITS
+
+const ALLOWED_UNITS = [
+  'kg',      // kilogram
+  'g',       // gram
+  'lb',      // pound
+  'oz',      // ounce
+  'l',       // liter
+  'ml',      // milliliter
+  'gal',     // gallon
+  'unit',    // unit
+  'pack',    // package
+  'box',     // box
+  'bag',     // bag
+  'can',     // can
+  'bottle',  // bottle
+  'jar'      // jar
+];
+
+// CREATE PRODUCT VALIDATOR
 
 const validateProductCreate = [
   body('name')
@@ -11,8 +55,8 @@ const validateProductCreate = [
   body('category')
     .trim()
     .notEmpty().withMessage('Category is required')
-    .isIn(['Frutas', 'Verduras', 'Lácteos', 'Carnes', 'Panadería', 'Bebidas', 'Snacks', 'Limpieza'])
-    .withMessage('Invalid category'),
+    .isIn(ALLOWED_CATEGORIES)
+    .withMessage(`Invalid category. Allowed: ${ALLOWED_CATEGORIES.join(', ')}`),
   
   body('price')
     .notEmpty().withMessage('Price is required')
@@ -25,8 +69,8 @@ const validateProductCreate = [
   body('unit')
     .trim()
     .notEmpty().withMessage('Unit is required')
-    .isIn(['kg', 'g', 'l', 'ml', 'unidad', 'paquete', 'caja'])
-    .withMessage('Invalid unit'),
+    .isIn(ALLOWED_UNITS)
+    .withMessage(`Invalid unit. Allowed: ${ALLOWED_UNITS.join(', ')}`),
   
   body('supplier')
     .trim()
@@ -43,7 +87,7 @@ const validateProductCreate = [
     .isISO8601().withMessage('Invalid date format. Use YYYY-MM-DD')
 ];
 
-//Refresh product validator
+// UPDATE PRODUCT VALIDATOR
 
 const validateProductUpdate = [
   body('name')
@@ -54,8 +98,8 @@ const validateProductUpdate = [
   body('category')
     .optional()
     .trim()
-    .isIn(['Frutas', 'Verduras', 'Lácteos', 'Carnes', 'Panadería', 'Bebidas', 'Snacks', 'Limpieza'])
-    .withMessage('Invalid category'),
+    .isIn(ALLOWED_CATEGORIES)
+    .withMessage(`Invalid category. Allowed: ${ALLOWED_CATEGORIES.join(', ')}`),
   
   body('price')
     .optional()
@@ -68,8 +112,8 @@ const validateProductUpdate = [
   body('unit')
     .optional()
     .trim()
-    .isIn(['kg', 'g', 'l', 'ml', 'unidad', 'paquete', 'caja'])
-    .withMessage('Invalid unit'),
+    .isIn(ALLOWED_UNITS)
+    .withMessage(`Invalid unit. Allowed: ${ALLOWED_UNITS.join(', ')}`),
   
   body('supplier')
     .optional()
@@ -86,7 +130,7 @@ const validateProductUpdate = [
     .isISO8601().withMessage('Invalid date format. Use YYYY-MM-DD')
 ];
 
-//ID validator
+// PRODUCT ID VALIDATOR
 
 const validateProductId = [
   param('id')
@@ -96,5 +140,7 @@ const validateProductId = [
 module.exports = {
   validateProductCreate,
   validateProductUpdate,
-  validateProductId
+  validateProductId,
+  ALLOWED_CATEGORIES,  // Export for use in other files
+  ALLOWED_UNITS        // Export for use in other files
 };
