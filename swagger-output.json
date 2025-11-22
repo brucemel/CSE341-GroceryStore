@@ -2,38 +2,20 @@
   "swagger": "2.0",
   "info": {
     "title": "Grocery Store API",
-    "description": "CSE 341 Project 2 - Complete CRUD API for a grocery store with products and customers management",
+    "description": "Complete CRUD API for a grocery store with products and customers management",
     "version": "1.0.0"
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "tags": [
-    {
-      "name": "Products",
-      "description": "Endpoints for managing grocery products"
-    },
-    {
-      "name": "Customers",
-      "description": "Endpoints for managing customers"
-    }
-  ],
   "schemes": [
-    "https",
     "http"
   ],
   "paths": {
-    "/api-docs/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
     "/": {
       "get": {
+        "tags": [
+          "CSE 341 - Contacts API"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -353,78 +335,6 @@
           "404": {
             "description": "Not Found"
           }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "Product": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "example": "Manzana Roja"
-        },
-        "category": {
-          "type": "string",
-          "example": "Frutas"
-        },
-        "price": {
-          "type": "number",
-          "example": 3.5
-        },
-        "stock": {
-          "type": "number",
-          "example": 100
-        },
-        "unit": {
-          "type": "string",
-          "example": "kg"
-        },
-        "supplier": {
-          "type": "string",
-          "example": "Frutas del Valle"
-        },
-        "description": {
-          "type": "string",
-          "example": "Manzanas rojas frescas y jugosas"
-        },
-        "expirationDate": {
-          "type": "string",
-          "example": "2024-12-31"
-        }
-      }
-    },
-    "Customer": {
-      "type": "object",
-      "properties": {
-        "firstName": {
-          "type": "string",
-          "example": "Juan"
-        },
-        "lastName": {
-          "type": "string",
-          "example": "Pérez"
-        },
-        "email": {
-          "type": "string",
-          "example": "juan.perez@email.com"
-        },
-        "phone": {
-          "type": "string",
-          "example": "+51 987654321"
-        },
-        "address": {
-          "type": "string",
-          "example": "Av. América 123"
-        },
-        "city": {
-          "type": "string",
-          "example": "Trujillo"
-        },
-        "postalCode": {
-          "type": "string",
-          "example": "13001"
         }
       }
     }
