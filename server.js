@@ -32,7 +32,6 @@ if (process.env.NODE_ENV === 'development') {
   });
 }
 
-// Documentación Swagger (cargar antes de la base de datos)
 app.use('/', require('./routes/swagger'));
 
 // Database Start
