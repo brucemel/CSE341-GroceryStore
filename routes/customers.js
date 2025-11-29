@@ -6,15 +6,15 @@ const {
   validateCustomerUpdate,
   validateCustomerId
 } = require('../validators/customerValidator');
+const { isAuthenticated } = require('../middleware/auth');
 
+// GET routes (PUBLIC)
 router.get('/', customersController.getAllCustomers);
-
 router.get('/:id', validateCustomerId, customersController.getCustomerById);
 
-router.post('/', validateCustomerCreate, customersController.createCustomer);
-
-router.put('/:id', validateCustomerId, validateCustomerUpdate, customersController.updateCustomer);
-
-router.delete('/:id', validateCustomerId, customersController.deleteCustomer);
+// POST, PUT, DELETE routes (PROTECTED)
+router.post('/', isAuthenticated, validateCustomerCreate, customersController.createCustomer);
+router.put('/:id', isAuthenticated, validateCustomerUpdate, customersController.updateCustomer);
+router.delete('/:id', isAuthenticated, customersController.deleteCustomer);
 
 module.exports = router;
